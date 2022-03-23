@@ -160,9 +160,25 @@ input[type="range"]::-webkit-slider-thumb{
 }
 
 .right #auto{
+    position: relative;
+    right: 65px;
 	font-size: 18px;
 	cursor: pointer;
 	margin-top: 45px;
+	border: none;
+	padding: 10px 14px;
+	color: #fff;
+	background: rgba(255,255,255,0.2);
+	outline: none;
+	border-radius: 10px;
+}
+.right #loop{
+    position: relative;
+    left: 75px;
+    top: -42px;
+    font-size: 18px;
+	cursor: pointer;
+	/* margin-top: 45px; */
 	border: none;
 	padding: 10px 14px;
 	color: #fff;

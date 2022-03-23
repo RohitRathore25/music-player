@@ -8,6 +8,7 @@ let slider = document.querySelector('#duration_slider');
 let show_duration = document.querySelector('#show_duration');
 let track_image = document.querySelector('#track_image');
 let auto_play = document.querySelector('#auto');
+let loop_play = document.querySelector('#loop');
 let present = document.querySelector('#present');
 let total = document.querySelector('#total');
 let artist = document.querySelector('#artist');
@@ -15,6 +16,7 @@ let artist = document.querySelector('#artist');
 
 let timer;
 let autoplay = 0;
+let loop = 0;
 
 let index_no = 0;
 let Playing_song = false;
@@ -164,12 +166,49 @@ function change_duration(){
 
 // autoplay function
 function autoplay_switch(){
-	if (autoplay==1){
-       autoplay = 0;
-       auto_play.style.background = "rgba(255,255,255,0.2)";
-	}else{
-       autoplay = 1;
-       auto_play.style.background = "#FF8A65";
+	if(loop == 1){
+		if (autoplay==1){
+			autoplay = 0;
+			auto_play.style.background = "rgba(255,255,255,0.2)";
+		}else{
+			loop = 0;
+			loop_play.style.background = "rgba(255,255,255,0.2)";
+			autoplay = 1;
+			auto_play.style.background = "#FF8A65";
+		}
+	}
+	else{
+		if (autoplay==1){
+			autoplay = 0;
+			auto_play.style.background = "rgba(255,255,255,0.2)";
+		}else{
+			autoplay = 1;
+			auto_play.style.background = "#FF8A65";
+		}
+	}
+}
+
+// loop function
+function loop_switch(){
+	if(autoplay == 1){
+		if (loop ==1){
+			loop = 0;
+			loop_play.style.background = "rgba(255,255,255,0.2)";
+		}else{
+			autoplay = 0;
+			auto_play.style.background = "rgba(255,255,255,0.2)";
+			loop = 1;
+			loop_play.style.background = "#FF8A65";
+		}
+	}
+	else{
+		if (loop ==1){
+			loop = 0;
+			loop_play.style.background = "rgba(255,255,255,0.2)";
+		}else{
+			loop = 1;
+			loop_play.style.background = "#FF8A65";
+		}
 	}
 }
 
@@ -187,11 +226,17 @@ function range_slider(){
        // function will run when the song is over
        if(track.ended){
        	 play.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
-           if(autoplay==1){
+			let curr_song = index_no;
+           	if(autoplay==1){
 		       index_no += 1;
 		       load_track(index_no);
 		       playsong();
-           }
-	    }
+           	}
+           	if(loop==1){
+		       index_no = curr_song;
+		       load_track(index_no);
+		       playsong();
+           	}
+ 	    }
      }
  
